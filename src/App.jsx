@@ -2,20 +2,16 @@
 import "./App.css";
 import TodoList from "./TodoList"; // Importe seu componente TodoList
 import TodoForm from "./TodoForm"; // Importe seu componente TodoForm
+import React, { useState } from "react"; // Import useState, se necessário
 
 function App() {
-  // O array 'todos' foi movido para TodoList, então não precisa mais estar aqui
-  // const todos = [
-  //   { id: 1, title: "review resources" },
-  //   { id: 2, title: "take notes" },
-  //   { id: 3, title: "code out app" },
-  // ];
-
+  const [newTodo, setNewTodo] = useState("Example Text"); // Estado para o novo todo]
   return (
     <div>
       <h1>Todo List</h1>
       {/* Apenas renderize o TodoList, sem passar props de 'todos' */}
       <TodoForm />
+      <p>{newTodo}</p>
       <TodoList />
     </div>
   );

@@ -1,5 +1,6 @@
 // TodoList.jsx
 import React, { useState } from "react"; // Import useState
+import TodoListItem from "./TodoListItem"; // Import the TodoListItem component
 
 function TodoList() {
   // Move the 'todos' array into TodoList and make it a state
@@ -16,7 +17,7 @@ function TodoList() {
   return (
     <ul>
       {todos.map((todo) => (
-        <li key={todo.id}>{todo.title}</li>
+        <TodoListItem key={todo.id} todo={todo} />
       ))}
     </ul>
   );
