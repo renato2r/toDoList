@@ -1,18 +1,28 @@
-// App.jsx
+// src/App.jsx
 import "./App.css";
-import TodoList from "./TodoList"; // Importe seu componente TodoList
-import TodoForm from "./TodoForm"; // Importe seu componente TodoForm
-import React, { useState } from "react"; // Import useState, se necessário
+import React, { useState, useRef } from "react";
+import TodoList from "./TodoList";
+import TodoForm from "./TodoForm";
 
 function App() {
-  const [newTodo, setNewTodo] = useState("Example Text"); // Estado para o novo todo]
+  // O estado 'todoList' agora é o dono dos dados
+  const [todoList, setTodoList] = useState([]);
+
+  function addTodo(title) {
+    const newTodo = {
+      title: title,
+      id: Date.now(),
+    };
+    setTodoList([...todoList, newTodo]);
+  }
+
   return (
     <div>
       <h1>Todo List</h1>
-      {/* Apenas renderize o TodoList, sem passar props de 'todos' */}
-      <TodoForm />
-      <p>{newTodo}</p>
-      <TodoList />
+      <TodoForm onAddTodo={addTodo} />
+
+      {/* 1. Passe o estado 'todoList' como uma prop chamada 'todoList' */}
+      <TodoList todoList={todoList} />
     </div>
   );
 }
