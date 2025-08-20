@@ -1,22 +1,18 @@
-// TodoList.jsx
-import React, { useState } from "react"; // Import useState
+// src/TodoList.jsx
+import React from "react"; // Não precisamos mais do useState aqui
+import TodoListItem from "./TodoListItem";
 
-function TodoList() {
-  // Move the 'todos' array into TodoList and make it a state
-  const [todos, setTodos] = useState([
-    { id: 1, title: "review resources" },
-    { id: 2, title: "take notes" },
-    { id: 3, title: "code out app" },
-  ]);
-
-  if (!todos || todos.length === 0) {
+// 1. Desestruture a prop 'todoList'
+function TodoList({ todoList }) {
+  if (!todoList || todoList.length === 0) {
     return <p>No tasks to display.</p>;
   }
 
   return (
     <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>{todo.title}</li>
+      {/* 3. Mapeie sobre 'todoList' em vez do array estático */}
+      {todoList.map((todo) => (
+        <TodoListItem key={todo.id} todo={todo} />
       ))}
     </ul>
   );
